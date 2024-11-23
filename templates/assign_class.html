@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Class to Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #333;
+        }
+
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        label {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"], input[type="submit"], select {
+            padding: 10px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9rem;
+            margin-top: -10px;
+        }
+
+        .success {
+            color: green;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Assign Class to Student</h1>
+
+    <div class="container">
+        <form method="POST">
+            <label for="pen">Student PEN:</label><br>
+            <input type="text" id="pen" name="pen" required><br><br>
+
+            <label for="class_id">Class:</label><br>
+            <select id="class_id" name="class_id" required>
+                {% for class in classes %}
+                    <option value="{{ class.class_id }}">{{ class.class_name }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="instructor_id">Instructor:</label><br>
+            <select id="instructor_id" name="instructor_id">
+                <option value="">Select an Instructor</option>
+                {% for instructor in instructors %}
+                    <option value="{{ instructor.instructor_id }}">{{ instructor.instructor_name }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="instructor_name">Or, Enter New Instructor's Name:</label><br>
+            <input type="text" id="instructor_name" name="instructor_name"><br><br>
+
+            <button type="submit">Assign Class</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        
+        {% if success %}
+            <p class="success">{{ success }}</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f6fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dashboard-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            margin: 40px auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: #00796b;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #00796b;
+            color: white;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        .logout-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .logout-button:hover {
+            background-color: #b71c1c;
+        }
+
+        .progress-container {
+            margin-top: 20px;
+        }
+
+        .progress {
+            background-color: #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 24px;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            line-height: 24px;
+            font-size: 14px;
+        }
+
+        .download-button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .download-button:hover {
+            background-color: #00574b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <h1>Welcome, {{ student_info.student_name }}</h1>
+        <p><strong>PEN:</strong> {{ student_info.pen }}</p>
+        <p><strong>Date of Birth:</strong> {{ student_info.dob }}</p>
+        <p><strong>Gender:</strong> {{ student_info.gender }}</p>
+
+        <h3>Overall Performance</h3>
+        <div class="progress-container">
+            {% if overall_performance %}
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar">
+                    {{ overall_performance | default('No Data') }}%
+                </div>
+                
+            </div>
+            {% else %}
+            <p>No performance data available.</p>
+            {% endif %}
+        </div>
+
+        <h2>Your Academic Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Grade</th>
+                    <th>Attendance (%)</th>
+                    <th>Instructor</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if performance_data %}
+                    {% for performance in performance_data %}
+                    <tr>
+                        <td>{{ performance.class_name }}</td>
+                        <td>{{ performance.grade }}</td>
+                        <td>{{ performance.attendance }}</td>
+                        <td>{{ performance.instructor_name }}</td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr><td colspan="4">No academic records found.</td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+        <div style="margin-top: 20px;">
+            <!-- Button to download performance chart -->
+            <a href="{{ url_for('download_performance_chart') }}" class="download-button">Download Performance Chart</a>
+            <!-- Logout button -->
+            <a href="{{ url_for('logout') }}" class="logout-button">Logout</a>
+        </div>
+    </div>
+
+    <script>
+        // Example JavaScript for future enhancement
+        // You can add additional interactivity here if needed, like chart loading or other actions.
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <title>Main Menu</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+    
+        header {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+    
+        nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 10px 0;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 80%;
+        }
+    
+        nav a {
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #3f51b5;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #f7f8fc, #ebeff9);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+    
+        nav a:hover {
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: white;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transform: scale(1.05);
+        }
+    
+        nav a:active {
+            transform: scale(0.95);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    
+</head>
+<body>
+    <header>
+        <h1>PEN Management System</h1>
+    </header>
+    <nav>
+        <a href="/register_student">Register Student</a>
+        <a href="/assign_class">Assign Class</a>
+        <a href="/record_performance">Record Performance</a>
+        <a href="/view_student_records">View Student Records</a>
+    </nav>
+</body>
+</html>
+

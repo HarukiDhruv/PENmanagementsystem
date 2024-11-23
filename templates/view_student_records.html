@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Student Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #3f51b5;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .error {
+            color: red;
+        }
+        .download-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .download-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>View Student Records</h1>
+    </header>
+
+    <div class="container">
+        <!-- Form to enter PEN -->
+        <form method="POST">
+            <div class="form-group">
+                <label for="pen">Enter Student PEN:</label>
+                <input type="text" id="pen" name="pen" placeholder="Enter PEN here" required>
+            </div>
+            <input type="submit" value="View Records">
+        </form>
+
+        <!-- Error message if no PEN or data is found -->
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <!-- Display student records if data is found -->
+        {% if student_data %}
+            <h2>Student Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Class Name</th>
+                        <th>Grade</th>
+                        <th>Attendance</th>
+                        <th>Instructor Name</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTable">
+                    {% for record in student_data %}
+                        <tr>
+                            <td>{{ record.student_name }}</td>
+                            <td>{{ record.class_name }}</td>
+                            <td>{{ record.grade }}</td>
+                            <td>{{ record.attendance }}%</td>
+                            <td>{{ record.instructor_name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Download as CSV Button -->
+            <button class="download-btn" onclick="downloadReport()">Download as CSV</button>
+        {% endif %}
+    </div>
+
+    <script>
+        function downloadReport() {
+            // Fetch data from the student table
+            const rows = document.querySelectorAll("#studentTable tr");
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Student Name,Class Name,Grade,Attendance,Instructor Name\n"; // Add headers
+
+            rows.forEach(row => {
+                const columns = row.querySelectorAll("td");
+                const rowData = Array.from(columns).map(col => col.textContent).join(",");
+                csvContent += rowData + "\n";
+            });
+
+            // Create a downloadable link
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "student_report.csv");
+            document.body.appendChild(link);
+
+            // Trigger the download
+            link.click();
+            document.body.removeChild(link);
+
+            alert("Report downloaded successfully!");
+        }
+    </script>
+</body>
+</html>

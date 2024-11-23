@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PEN Management System</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ccefff, #eaf6ff);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Background Abstract Shapes */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(135deg, #90caf9, #64b5f6);
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -50px;
+        }
+
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            bottom: -100px;
+            right: -80px;
+        }
+
+        .shape-3 {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            right: 50px;
+            background: linear-gradient(135deg, #81d4fa, #4fc3f7);
+        }
+
+        /* Login Card */
+        .login-container {
+            position: relative;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 40px 30px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .login-container h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #007acc;
+            margin-bottom: 20px;
+        }
+
+        .login-container h2 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        /* Inner Shapes Inside Login Card */
+        .login-container .inner-shape-1,
+        .login-container .inner-shape-2 {
+            position: absolute;
+            background: linear-gradient(135deg, #b3e5fc, #81d4fa);
+            opacity: 0.2;
+            border-radius: 50%;
+        }
+
+        .login-container .inner-shape-1 {
+            width: 100px;
+            height: 100px;
+            top: -20px;
+            left: -30px;
+        }
+
+        .login-container .inner-shape-2 {
+            width: 80px;
+            height: 80px;
+            bottom: -20px;
+            right: -20px;
+        }
+
+        /* Login Options */
+        .login-options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .login-button {
+            padding: 15px;
+            background-color: #007acc;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .login-button:hover {
+            background-color: #005f99;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .forgot-password {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #777;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            color: #007acc;
+        }
+
+        /* Spacing and Layout Adjustments */
+        .login-container .spacer {
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Shapes -->
+    <div class="background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Main Login Card -->
+    <div class="login-container">
+        <!-- Decorative Shapes Inside Login Card -->
+        <div class="inner-shape-1"></div>
+        <div class="inner-shape-2"></div>
+
+        <h1>PEN Management System</h1>
+        <h2>Welcome! Please choose your login type</h2>
+        <div class="login-options">
+            <a href="/login_student" class="login-button">Student Login</a>
+            <a href="/login_admin" class="login-button">Admin Login</a>
+        </div>
+        <div class="spacer"></div>
+        <a href="#" class="forgot-password">Forgot password?</a>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
